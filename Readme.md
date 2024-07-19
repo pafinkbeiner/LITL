@@ -6,7 +6,7 @@
 
 ## Konfiguration
 
-Die Konfiguration sollte über das elements-Array stattfinden.
+Die Konfiguration sollte über das <b>elements-Array</b> stattfinden.
 
 Die ersten Attribute beziehen sich auf die Eigenschaften des Elements in der 3D-Ansicht.
 ```
