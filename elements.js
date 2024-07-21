@@ -3,6 +3,7 @@ import { rgbToHex, rgbToHexNumber } from "./convert";
 
 const baseElement = {
     treeElement: undefined,
+    ipAddress: "",
     geometry: {
         x: 0,
         y: 0,
@@ -44,9 +45,46 @@ const baseElement = {
     }
 }
 
+const wledElement = {
+    ...baseElement,
+    init: async function() {
+        const self = this;
+        const currentState = await (await fetch(`http://${self.ipAddress}/json/state`)).json();
+        if(currentState.on){
+            const [r, g, b] = currentState.seg[0].col[0];
+            self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
+        } else {
+            self.treeElement.material.color.set(0xff0000);
+        }
+    },
+    state: async function () {
+        const self = this;
+        const currentState = await (await fetch(`http://${self.ipAddress}/json/state`)).json();
+        const nextState = !currentState.on;
+        await fetch(`http://${self.ipAddress}/json/state`, {method: "POST", body: JSON.stringify({
+            "on": nextState,
+            "bri":255
+        })});
+        if(nextState){
+            const [r, g, b] = currentState.seg[0].col[0];
+            self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
+        } else {
+            self.treeElement.material.color.set(0xff0000);
+        }
+    },
+    color: async function (r, g, b) {
+        const self = this;
+        await fetch(`http://${self.ipAddress}/json/state`, {method: "POST", body: JSON.stringify({
+            "seg": [{"col": [[r, g, b], [0, 0, 0], [0, 0, 0]]}]
+        })});
+        self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
+    }
+}
+
 export const elements = [
     {
-        ...baseElement,
+        ...wledElement,
+        ipAddress: "10.0.0.167",
         geometry: {
             x: 0.1,
             y: 8,
@@ -64,42 +102,11 @@ export const elements = [
             x: 0,
             y: 0,
             z: 0.039
-        },
-        init: async function() {
-            const self = this;
-            const currentState = await (await fetch("http://10.0.0.167/json/state")).json();
-            if(currentState.on){
-                const [r, g, b] = currentState.seg[0].col[0];
-                self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
-            } else {
-                self.treeElement.material.color.set(0xff0000);
-            }
-        },
-        state: async function () {
-            const self = this;
-            const currentState = await (await fetch("http://10.0.0.167/json/state")).json();
-            const nextState = !currentState.on;
-            await fetch("http://10.0.0.167/json/state", {method: "POST", body: JSON.stringify({
-                "on": nextState,
-                "bri":255
-            })});
-            if(nextState){
-                const [r, g, b] = currentState.seg[0].col[0];
-                self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
-            } else {
-                self.treeElement.material.color.set(0xff0000);
-            }
-        },
-        color: async function (r, g, b) {
-            const self = this;
-            await fetch("http://10.0.0.167/json/state", {method: "POST", body: JSON.stringify({
-                "seg": [{"col": [[r, g, b], [0, 0, 0], [0, 0, 0]]}]
-            })});
-            self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
         }
     },
     {
-        ...baseElement,
+        ...wledElement,
+        ipAddress: "10.0.0.33",
         geometry: {
             x: 0.1,
             y: 2,
@@ -117,38 +124,28 @@ export const elements = [
             x: 0,
             y: 0,
             z: 0
+        }
+    },
+    {
+        ...wledElement,
+        ipAddress: "10.0.0.220",
+        geometry: {
+            x: 0.1,
+            y: 0.9,
+            z: 0.5
         },
-        init: async function() {
-            const self = this;
-            const currentState = await (await fetch("http://10.0.0.33/json/state")).json();
-            if(currentState.on){
-                const [r, g, b] = currentState.seg[0].col[0];
-                self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
-            } else {
-                self.treeElement.material.color.set(0xff0000);
-            }
+        material: {
+            color: 0x00ff00
         },
-        state: async function () {
-            const self = this;
-            const currentState = await (await fetch("http://10.0.0.33/json/state")).json();
-            const nextState = !currentState.on;
-            await fetch("http://10.0.0.33/json/state", {method: "POST", body: JSON.stringify({
-                "on": nextState,
-                "bri":255
-            })});
-            if(nextState){
-                const [r, g, b] = currentState.seg[0].col[0];
-                self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
-            } else {
-                self.treeElement.material.color.set(0xff0000);
-            }
+        position: {
+            x: -1.6,
+            y: -6.2,
+            z: 1.3
         },
-        color: async function (r, g, b) {
-            const self = this;
-            await fetch("http://10.0.0.33/json/state", {method: "POST", body: JSON.stringify({
-                "seg": [{"col": [[r, g, b], [0, 0, 0], [0, 0, 0]]}]
-            })});
-            self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
+        rotation: {
+            x: 0,
+            y: 0,
+            z: 0
         }
     }
 ]

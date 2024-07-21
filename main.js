@@ -130,7 +130,6 @@ function onMouseClick(event) {
     for (let i = 0; i < intersects.length; i++) {
         for(const element of elements){
             if(intersects[i].object === element.treeElement){
-                element.treeElement.material.color.set(0xff0000);
                 element.state();
                 break;
             }
