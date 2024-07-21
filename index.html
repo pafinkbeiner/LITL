@@ -10,31 +10,44 @@
       * {
         margin: 0;
         padding: 0;
+        font-family: Tahoma, sans-serif;
       }
       .btn{
         height: 3rem; 
         width: 3rem;
         border: none;
         background-color: darkgray;
+        font-size: 1.4em;
       }
     </style>
     <div id="app"></div>
-    <div style="position: absolute; top: 5px; right: 5px; display: flex; flex-direction: column; gap: 0.5rem;" id="controls">
-      <div style="display: flex; justify-content: space-between;">
-        <button class="btn" id="moveLeftUp">🡴</button>
-        <button class="btn" id="moveUp">🡱</button>
-        <button class="btn" id="moveRightUp">🡵</button>
+    <div style="position: absolute; display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; flex-direction: column; background-color: darkgray; padding: 1rem 3rem 1rem 3rem; align-items: center;">
+        <h1 style="font-weight: normal;">LITL</h1>
+        <p style="font-size: 0.8em;">Smarthome Interface Solution</p>
+        <p style="font-size: 0.5em; margin-top: 0.3rem;">© Paul Finkbeiner</p>
       </div>
-      <div style="display: flex; justify-content: space-between;">
-        <button class="btn" id="moveLeft">🡰</button>
-        <button class="btn" id="moveRight">🡲</button>
-      </div>
-      <div style="display: flex; justify-content: space-between; gap: 0.5rem;">
-        <button class="btn" id="moveLeftDown">🡷</button>
-        <button class="btn" id="moveDown">🡳</button>
-        <button class="btn" id="moveRightDown">🡶</button>
+      <div style="background-color: darkgray;">
+        TODO: Load different floors at runtime
       </div>
     </div>
+    <div style="position: absolute; top: 5px; right: 5px; display: flex; flex-direction: column; gap: 0.5rem;" id="controls">
+      <div style="display: flex; justify-content: space-between;">
+        <button class="btn" id="moveLeftUp">⬁</button>
+        <button class="btn" id="moveUp">⇧</button>
+        <button class="btn" id="moveRightUp">⬀</button>
+      </div>
+      <div style="display: flex; justify-content: space-between;">
+        <button class="btn" id="moveLeft">⇦</button>
+        <button class="btn" id="moveRight">⇨</button>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 0.5rem;">
+        <button class="btn" id="moveLeftDown">⬃</button>
+        <button class="btn" id="moveDown">⇩</button>
+        <button class="btn" id="moveRightDown">⬂</button>
+      </div> 
+    </div>
+    <script src="/colorpicker.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

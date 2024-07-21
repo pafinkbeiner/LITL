@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { rgbToHex, rgbToHexNumber } from "./convert";
 
 const baseElement = {
     treeElement: undefined,
@@ -68,7 +69,8 @@ export const elements = [
             const self = this;
             const currentState = await (await fetch("http://10.0.0.167/json/state")).json();
             if(currentState.on){
-                self.treeElement.material.color.set(0x00ff00);
+                const [r, g, b] = currentState.seg[0].col[0];
+                self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
             } else {
                 self.treeElement.material.color.set(0xff0000);
             }
@@ -82,35 +84,71 @@ export const elements = [
                 "bri":255
             })});
             if(nextState){
-                self.treeElement.material.color.set(0x00ff00);
+                const [r, g, b] = currentState.seg[0].col[0];
+                self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
             } else {
                 self.treeElement.material.color.set(0xff0000);
             }
         },
-        color: async function () {
+        color: async function (r, g, b) {
             const self = this;
-            // TODO
+            await fetch("http://10.0.0.167/json/state", {method: "POST", body: JSON.stringify({
+                "seg": [{"col": [[r, g, b], [0, 0, 0], [0, 0, 0]]}]
+            })});
+            self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
         }
     },
-    // {
-    //     ...baseElement,
-    //     geometry: {
-    //         x: 2,
-    //         y: 2,
-    //         z: 2
-    //     },
-    //     material: {
-    //         color: 0x00ff00
-    //     },
-    //     position: {
-    //         x: -5,
-    //         y: 0,
-    //         z: 1
-    //     },
-    //     rotation: {
-    //         x: 0,
-    //         y: 0,
-    //         z: 0.039
-    //     }
-    // }
+    {
+        ...baseElement,
+        geometry: {
+            x: 0.1,
+            y: 2,
+            z: 0.1
+        },
+        material: {
+            color: 0x00ff00
+        },
+        position: {
+            x: 3.7,
+            y: 5,
+            z: 3.5
+        },
+        rotation: {
+            x: 0,
+            y: 0,
+            z: 0
+        },
+        init: async function() {
+            const self = this;
+            const currentState = await (await fetch("http://10.0.0.33/json/state")).json();
+            if(currentState.on){
+                const [r, g, b] = currentState.seg[0].col[0];
+                self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
+            } else {
+                self.treeElement.material.color.set(0xff0000);
+            }
+        },
+        state: async function () {
+            const self = this;
+            const currentState = await (await fetch("http://10.0.0.33/json/state")).json();
+            const nextState = !currentState.on;
+            await fetch("http://10.0.0.33/json/state", {method: "POST", body: JSON.stringify({
+                "on": nextState,
+                "bri":255
+            })});
+            if(nextState){
+                const [r, g, b] = currentState.seg[0].col[0];
+                self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
+            } else {
+                self.treeElement.material.color.set(0xff0000);
+            }
+        },
+        color: async function (r, g, b) {
+            const self = this;
+            await fetch("http://10.0.0.33/json/state", {method: "POST", body: JSON.stringify({
+                "seg": [{"col": [[r, g, b], [0, 0, 0], [0, 0, 0]]}]
+            })});
+            self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
+        }
+    }
 ]

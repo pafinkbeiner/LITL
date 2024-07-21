@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { elements } from "./elements";
+import { hexToRgb } from "./convert";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -137,7 +138,32 @@ function onMouseClick(event) {
     }
 }
 
+async function onRightMouseClick(event) {
+    // Calculate mouse position in normalized device coordinates
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+    // Update the raycaster with the camera and mouse position
+    raycaster.setFromCamera(mouse, camera);
+
+    // Calculate objects intersecting the raycaster
+    const intersects = raycaster.intersectObjects(scene.children);
+    for (let i = 0; i < intersects.length; i++) {
+        for(const element of elements){
+            if(intersects[i].object === element.treeElement){
+                console.log("Right Click on Element")
+                const color = await invokeColorPicker(event.clientX + 20, event.clientY - 40, '#ff0000');
+                const {r, g, b} = hexToRgb(color);
+                await element.color(r, g, b);
+                console.log(color)
+                break;
+            }
+        }
+    }
+}
+
 window.addEventListener('click', onMouseClick, false);
+window.addEventListener('contextmenu', onRightMouseClick, false);
 
 // ANIMATION LOOP
 function animate() {
