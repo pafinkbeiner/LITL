@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run build && vite --host",
-    "build": "vite build && obj2gltf -i obj/house.obj -o obj/house.gltf",
+    "build": "vite build && npm run build_gltf",
+    "build_gltf": "obj2gltf -i obj/house.obj -o obj/house.gltf",
     "preview": "vite preview"
   },
   "keywords": [],

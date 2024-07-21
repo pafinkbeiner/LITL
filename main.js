@@ -77,41 +77,40 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.getElementById('moveLeftUp').addEventListener('click', () => {
-	if (group) group.rotation.x -= moveSpeed; // ✔
-	if (group) group.rotation.z -= moveSpeed; // ✔
+	if (group) group.rotation.x -= moveSpeed;
+	if (group) group.rotation.z -= moveSpeed;
 });
 
 document.getElementById('moveUp').addEventListener('click', () => {
-	if (group) group.rotation.x -= moveSpeed; // ✔
+	if (group) group.rotation.x -= moveSpeed;
 });
 
 document.getElementById('moveRightUp').addEventListener('click', () => {
-	if (group) group.rotation.x -= moveSpeed; // ✔
-	if (group) group.rotation.z += moveSpeed; // ✔
+	if (group) group.rotation.x -= moveSpeed;
+	if (group) group.rotation.z += moveSpeed;
 });
 
 document.getElementById('moveLeft').addEventListener('click', () => {
-	if (group) group.rotation.z -= moveSpeed; // ✔
+	if (group) group.rotation.z -= moveSpeed;
 });
 
 document.getElementById('moveRight').addEventListener('click', () => {
-	if (group) group.rotation.z += moveSpeed; // ✔
+	if (group) group.rotation.z += moveSpeed;
 });
 
 document.getElementById('moveLeftDown').addEventListener('click', () => {
-	if (group) group.rotation.x += moveSpeed; // ✔
-	if (group) group.rotation.z -= moveSpeed; // ✔
+	if (group) group.rotation.x += moveSpeed;
+	if (group) group.rotation.z -= moveSpeed;
 });
 
 document.getElementById('moveDown').addEventListener('click', () => {
-	if (group) group.rotation.x += moveSpeed; // ✔
+	if (group) group.rotation.x += moveSpeed;
 });
 
 document.getElementById('moveRightDown').addEventListener('click', () => {
-	if (group) group.rotation.x += moveSpeed; // ✔
-	if (group) group.rotation.z += moveSpeed; // ✔
+	if (group) group.rotation.x += moveSpeed;
+	if (group) group.rotation.z += moveSpeed;
 });
-
 
 // Raycaster for detecting mouse clicks
 const raycaster = new THREE.Raycaster();
@@ -150,7 +149,6 @@ async function onRightMouseClick(event) {
     for (let i = 0; i < intersects.length; i++) {
         for(const element of elements){
             if(intersects[i].object === element.treeElement){
-                console.log("Right Click on Element")
                 const color = await invokeColorPicker(event.clientX + 20, event.clientY - 40, '#ff0000');
                 const {r, g, b} = hexToRgb(color);
                 await element.color(r, g, b);

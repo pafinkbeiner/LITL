@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { rgbToHex, rgbToHexNumber } from "./convert";
+import { rgbToHexNumber } from "./convert";
 
 const baseElement = {
     treeElement: undefined,
@@ -91,7 +91,7 @@ export const elements = [
             z: 0.1
         },
         material: {
-            color: 0x00ff00
+            color: 0xaaaaaa
         },
         position: {
             x: -1.4,
@@ -113,7 +113,7 @@ export const elements = [
             z: 0.1
         },
         material: {
-            color: 0x00ff00
+            color: 0xaaaaaa
         },
         position: {
             x: 3.7,
@@ -135,7 +135,7 @@ export const elements = [
             z: 0.5
         },
         material: {
-            color: 0x00ff00
+            color: 0xaaaaaa
         },
         position: {
             x: -1.6,
