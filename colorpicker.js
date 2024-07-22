@@ -1,4 +1,4 @@
-function invokeColorPicker(x, y, currentColor) {
+export function invokeColorPicker(x, y, currentColor) {
 
     let colorPickerContainer = document.getElementById('colorPickerContainer');
     if (!colorPickerContainer) {
