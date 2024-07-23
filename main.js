@@ -7,7 +7,10 @@ import { invokeColorPicker } from './colorpicker';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+// SET CAMERA AND DISPLAY
 camera.position.z = 20;
+document.getElementById("currentZoom").innerText = parseFloat(camera.position.z).toFixed(2);
 
 // ADD RENDERER
 const renderer = new THREE.WebGLRenderer();
@@ -118,6 +121,16 @@ document.getElementById('moveDown').addEventListener('click', () => {
 document.getElementById('moveRightDown').addEventListener('click', () => {
 	if (group) group.rotation.x += moveSpeed;
 	if (group) group.rotation.z += moveSpeed;
+});
+
+document.getElementById('zoomIn').addEventListener('click', () => {
+    if (group) camera.position.z -= moveSpeed;
+    document.getElementById("currentZoom").innerText = parseFloat(camera.position.z).toFixed(2);
+});
+
+document.getElementById('zoomOut').addEventListener('click', () => {
+	if (group) camera.position.z += moveSpeed;
+    document.getElementById("currentZoom").innerText = parseFloat(camera.position.z).toFixed(2);
 });
 
 // Raycaster for detecting mouse clicks
