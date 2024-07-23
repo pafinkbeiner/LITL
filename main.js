@@ -95,6 +95,13 @@ document.getElementById('moveLeft').addEventListener('click', () => {
 	if (group) group.rotation.z -= moveSpeed;
 });
 
+document.getElementById('moveHome').addEventListener('click', () => {
+	if (group) {
+        group.rotation.x = 5;
+        group.rotation.z = 0.8;
+    }
+});
+
 document.getElementById('moveRight').addEventListener('click', () => {
 	if (group) group.rotation.z += moveSpeed;
 });
