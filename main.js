@@ -99,10 +99,8 @@ document.getElementById('moveLeft').addEventListener('click', () => {
 });
 
 document.getElementById('moveHome').addEventListener('click', () => {
-	if (group) {
-        group.rotation.x = 5;
-        group.rotation.z = 0.8;
-    }
+	if (group) group.rotation.x = 5;
+    if (group) group.rotation.z = 0.8;
 });
 
 document.getElementById('moveRight').addEventListener('click', () => {
