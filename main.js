@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { elements } from "./elements";
 import { hexToRgb } from "./convert";
 import { invokeColorPicker } from './colorpicker';
+import { setupFloorPicker } from './floorpicker';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -180,6 +181,8 @@ async function onRightMouseClick(event) {
 
 window.addEventListener('click', onMouseClick, false);
 window.addEventListener('contextmenu', onRightMouseClick, false);
+
+setupFloorPicker(scene);
 
 // ANIMATION LOOP
 function animate() {

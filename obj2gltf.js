@@ -4,6 +4,7 @@ import path from "path"
 
 const OBJ_FOLDER_PATH = "./obj";
 
+// Convert Obj -> Glhf
 const objFolderExists = fs.existsSync(OBJ_FOLDER_PATH)
 if(objFolderExists){
     const folderContent = fs.readdirSync(OBJ_FOLDER_PATH);
@@ -18,4 +19,15 @@ if(objFolderExists){
     console.log("Creating obj-Folder...");
     fs.mkdir(OBJ_FOLDER_PATH)
 }
+
+// Write Folder Content to JSON-File
+const FLOOR_FILE_NAME = "floors.json";
+const floors = fs.readdirSync(OBJ_FOLDER_PATH).filter(file => path.extname(file) === '.gltf').map((item, index) => {
+    return {
+        file: item,
+        displayName: path.basename(item, ".gltf"),
+        id: index
+    }
+})
+fs.writeFileSync(FLOOR_FILE_NAME, JSON.stringify(floors));
 
