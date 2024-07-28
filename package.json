@@ -2,10 +2,11 @@
   "name": "litl",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "npm run build && vite --host",
-    "build": "vite build && npm run build_gltf",
-    "build_gltf": "obj2gltf -i obj/house.obj -o obj/house.gltf",
+    "start": "npm run build && npm run dev",
+    "dev": "vite --host",
+    "build": "node obj2gltf.js && vite build",
     "preview": "vite preview"
   },
   "keywords": [],
