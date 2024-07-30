@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { elements } from "./elements";
+import { elements, floors } from "./elements";
 import { hexToRgb } from "./convert";
 import { invokeColorPicker } from './colorpicker';
 import { setupFloorPicker } from './floorpicker';
@@ -36,18 +36,23 @@ scene.add(ambientLight);
 // CREATE GROUP
 const group = new THREE.Group();
 
-// LOAD HOUSE GLTF
-let house; 
-loader.load( 'obj/house.gltf', function ( gltf ) {
-	house = gltf.scene;
-	group.add(house);
-}, undefined, function ( error ) {
-	console.error( error );
-});
-
-// LIGHTS
-elements.forEach(e => e.create())
-elements.forEach(e => group.add(e.treeElement));
+export const loadFloor = (ACTIVE_FLOOR_INDEX) => {
+    console.log("LOAD FLOOR: ", ACTIVE_FLOOR_INDEX)
+    if(floors[ACTIVE_FLOOR_INDEX] !== undefined){
+        group.clear();
+        // HOUSE
+        (async () => {
+            await floors[ACTIVE_FLOOR_INDEX].create();
+            group.add(floors[ACTIVE_FLOOR_INDEX].threeElement)
+        })();
+        // LIGHTS
+        floors[ACTIVE_FLOOR_INDEX].elements.forEach(e => e.create())
+        floors[ACTIVE_FLOOR_INDEX].elements.forEach(e => group.add(e.treeElement));
+        
+        scene.add(group);
+    }
+}
+loadFloor(0);
 
 // ADD GROUP 
 group.rotation.x = 5;
@@ -182,7 +187,7 @@ async function onRightMouseClick(event) {
 window.addEventListener('click', onMouseClick, false);
 window.addEventListener('contextmenu', onRightMouseClick, false);
 
-setupFloorPicker(scene);
+setupFloorPicker();
 
 // ANIMATION LOOP
 function animate() {

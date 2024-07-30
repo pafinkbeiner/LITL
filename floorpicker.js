@@ -1,35 +1,23 @@
-export function setupFloorPicker(scene){
+import { floors } from "./elements";
+import { loadFloor } from "./main";
 
+export function setupFloorPicker() {
     let floorPickerContainer = document.getElementById('floorPickerContainer');
     if (floorPickerContainer) {
-        console.log("Appending floors...");
-        (async () => {
-            const floors = await (await fetch("/floors.json")).json();
-            floors.forEach(floor => {
-                const floorId = `floor-button-${floor.id}`;
-                console.log("Appending: " + `${floor.displayName}`);
-                floorPickerContainer.innerHTML += `<div id="${floorId}" style="cursor: pointer; padding: 1rem;">${floor.displayName}</div>`
-                document.getElementById(floorId).addEventListener("click", (ev) => {
-                    invokeFloorPicker(floor.id);
-                })
+        console.log("Appending floors...", floors.length);
+        floors.forEach((floor, index) => {
+            const floorId = `floor-button-${index}`;
+            const floorButton = document.createElement('div');
+            floorButton.id = floorId;
+            floorButton.style.cursor = 'pointer';
+            floorButton.style.padding = '1rem';
+            floorButton.innerText = floor.displayName;
+
+            floorPickerContainer.appendChild(floorButton);
+
+            floorButton.addEventListener("click", async (ev) => {
+                await loadFloor(index);
             });
-        })();
-    }
-    
-    function invokeFloorPicker(index) {
-    
-        console.log("loading floor: ", index);
-    
-        if(scene){
-            console.log(scene)
-        }
-        // let house; 
-        // loader.load( 'obj/house.gltf', function ( gltf ) {
-        //     house = gltf.scene;
-        //     group.add(house);
-        // }, undefined, function ( error ) {
-        //     console.error( error );
-        // });
+        });
     }
 }
-

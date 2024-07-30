@@ -1,5 +1,46 @@
 import * as THREE from 'three';
 import { rgbToHexNumber } from "./convert";
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const loader = new GLTFLoader();
+
+const baseFloor = {
+    active: false,
+    threeElement: undefined,
+    file: "",
+    displayName: "",
+    elements: [],
+    init: function(){
+        const self = this;
+        console.log("Initialising Floor: "+ this.displayName)
+    },
+    create: async function(){
+        const self = this;
+        if(self.treeElement === undefined){
+            const loadModel = () => {
+                return new Promise((resolve, reject) => {
+                    loader.load(
+                        'obj/' + self.file, 
+                        function (gltf) {
+                            resolve(gltf.scene);
+                        },
+                        undefined, 
+                        function (error) {
+                            reject(error);
+                        }
+                    );
+                });
+            };
+            try {
+                const scene = await loadModel();
+                self.threeElement = scene;
+                self.init();
+            }catch(e){
+                console.error(error);
+            }
+        }
+    }
+}
 
 const baseElement = {
     treeElement: undefined,
@@ -80,6 +121,155 @@ const wledElement = {
         self.treeElement.material.color.set(rgbToHexNumber(r, g, b));
     }
 }
+
+export const floors = [
+    {
+        ...baseFloor,
+        file: "EG.gltf",
+        displayName: "Erdgeschoss",
+        elements: [
+            {
+            ...wledElement,
+            ipAddress: "10.0.0.167",
+            geometry: {
+                x: 0.1,
+                y: 8,
+                z: 0.1
+            },
+            material: {
+                color: 0xaaaaaa
+            },
+            position: {
+                x: -1.4,
+                y: 0,
+                z: 4.5
+            },
+            rotation: {
+                x: 0,
+                y: 0,
+                z: 0.039
+            }
+            },
+            {
+                ...wledElement,
+                ipAddress: "10.0.0.33",
+                geometry: {
+                    x: 0.1,
+                    y: 2,
+                    z: 0.1
+                },
+                material: {
+                    color: 0xaaaaaa
+                },
+                position: {
+                    x: 3.7,
+                    y: 5,
+                    z: 3.5
+                },
+                rotation: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                }
+            },
+            {
+                ...wledElement,
+                ipAddress: "10.0.0.220",
+                geometry: {
+                    x: 0.1,
+                    y: 0.9,
+                    z: 0.5
+                },
+                material: {
+                    color: 0xaaaaaa
+                },
+                position: {
+                    x: -1.6,
+                    y: -6.2,
+                    z: 1.3
+                },
+                rotation: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                }
+            }
+        ]
+    },
+    {
+        ...baseFloor,
+        file: "1.OG.gltf",
+        displayName: "Obergeschoss",
+        elements: [
+            {
+            ...wledElement,
+            ipAddress: "10.0.0.167",
+            geometry: {
+                x: 0.1,
+                y: 8,
+                z: 0.1
+            },
+            material: {
+                color: 0xaaaaaa
+            },
+            position: {
+                x: -1.4,
+                y: 0,
+                z: 4.5
+            },
+            rotation: {
+                x: 0,
+                y: 0,
+                z: 0.039
+            }
+            },
+            {
+                ...wledElement,
+                ipAddress: "10.0.0.33",
+                geometry: {
+                    x: 0.1,
+                    y: 2,
+                    z: 0.1
+                },
+                material: {
+                    color: 0xaaaaaa
+                },
+                position: {
+                    x: 3.7,
+                    y: 5,
+                    z: 3.5
+                },
+                rotation: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                }
+            },
+            {
+                ...wledElement,
+                ipAddress: "10.0.0.220",
+                geometry: {
+                    x: 0.1,
+                    y: 0.9,
+                    z: 0.5
+                },
+                material: {
+                    color: 0xaaaaaa
+                },
+                position: {
+                    x: -1.6,
+                    y: -6.2,
+                    z: 1.3
+                },
+                rotation: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                }
+            }
+        ]
+    }
+]
 
 export const elements = [
     {

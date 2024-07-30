@@ -2,7 +2,7 @@ import obj2gltf from "obj2gltf";
 import fs from "fs"
 import path from "path"
 
-const OBJ_FOLDER_PATH = "./obj";
+export const OBJ_FOLDER_PATH = "./obj";
 
 // Convert Obj -> Glhf
 const objFolderExists = fs.existsSync(OBJ_FOLDER_PATH)
@@ -21,13 +21,13 @@ if(objFolderExists){
 }
 
 // Write Folder Content to JSON-File
-const FLOOR_FILE_NAME = "floors.json";
-const floors = fs.readdirSync(OBJ_FOLDER_PATH).filter(file => path.extname(file) === '.gltf').map((item, index) => {
-    return {
-        file: item,
-        displayName: path.basename(item, ".gltf"),
-        id: index
-    }
-})
-fs.writeFileSync(FLOOR_FILE_NAME, JSON.stringify(floors));
+// const FLOOR_FILE_NAME = "floors.json";
+// const floors = fs.readdirSync(OBJ_FOLDER_PATH).filter(file => path.extname(file) === '.gltf').map((item, index) => {
+//     return {
+//         file: item,
+//         displayName: path.basename(item, ".gltf"),
+//         id: index
+//     }
+// })
+// fs.writeFileSync(FLOOR_FILE_NAME, JSON.stringify(floors));
 
