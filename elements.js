@@ -169,9 +169,9 @@ export const floors = [
                 color: 0xaaaaaa
             },
             position: {
-                x: -1.4,
-                y: 0,
-                z: 4.5
+                x: -2,
+                y: -1,
+                z: 6.2
             },
             rotation: {
                 x: 0,
@@ -183,17 +183,17 @@ export const floors = [
                 ...wledElement,
                 ipAddress: "10.0.0.33",
                 geometry: {
-                    x: 0.1,
+                    x: 0.2,
                     y: 2,
-                    z: 0.1
+                    z: 0.2
                 },
                 material: {
                     color: 0xaaaaaa
                 },
                 position: {
-                    x: 3.7,
-                    y: 5,
-                    z: 3.5
+                    x: 5,
+                    y: 7,
+                    z: 4.5
                 },
                 rotation: {
                     x: 0,
