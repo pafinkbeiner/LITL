@@ -36,7 +36,7 @@ scene.add(ambientLight);
 // CREATE GROUP
 const group = new THREE.Group();
 
-function scaleModelToFit(object, standardSize = 1) {
+function scaleModelToFit(object, standardSize = 20) {
     const boundingBox = new THREE.Box3().setFromObject(object);
     const size = new THREE.Vector3();
     boundingBox.getSize(size);
@@ -52,7 +52,7 @@ export const loadFloor = (ACTIVE_FLOOR_INDEX) => {
         // HOUSE
         (async () => {
             await floors[ACTIVE_FLOOR_INDEX].create();
-	    // scaleModelToFit(floors[ACTIVE_FLOOR_INDEX].threeElement); // Skaliere das Modell
+	        scaleModelToFit(floors[ACTIVE_FLOOR_INDEX].threeElement); // Skaliere das Modell
             group.add(floors[ACTIVE_FLOOR_INDEX].threeElement)
         })();
         // LIGHTS
