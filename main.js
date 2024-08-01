@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { elements, floors } from "./elements";
+import { floors } from "./elements";
 import { hexToRgb } from "./convert";
 import { invokeColorPicker } from './colorpicker';
 import { setupFloorPicker } from './floorpicker';
@@ -46,8 +46,11 @@ function scaleModelToFit(object, standardSize = 20) {
 }
 
 export const loadFloor = (ACTIVE_FLOOR_INDEX) => {
-    console.log("LOAD FLOOR: ", ACTIVE_FLOOR_INDEX)
     if(floors[ACTIVE_FLOOR_INDEX] !== undefined){
+        // Toggle Active
+        floors.forEach(f => f.active = false);
+        floors[ACTIVE_FLOOR_INDEX].active = true;
+        // Clear Three Grooup
         group.clear();
         // HOUSE
         (async () => {
@@ -162,10 +165,13 @@ function onMouseClick(event) {
     // Calculate objects intersecting the raycaster
     const intersects = raycaster.intersectObjects(scene.children);
     for (let i = 0; i < intersects.length; i++) {
-        for(const element of elements){
-            if(intersects[i].object === element.treeElement){
-                element.state();
-                break;
+        const activeFloor = floors.find(f => f.active);
+        if(activeFloor !== undefined){
+            for(const element of activeFloor.elements){
+                if(intersects[i].object === element.treeElement){
+                    element.state();
+                    break;
+                }
             }
         }
     }
@@ -182,13 +188,16 @@ async function onRightMouseClick(event) {
     // Calculate objects intersecting the raycaster
     const intersects = raycaster.intersectObjects(scene.children);
     for (let i = 0; i < intersects.length; i++) {
-        for(const element of elements){
-            if(intersects[i].object === element.treeElement){
-                const color = await invokeColorPicker(event.clientX + 20, event.clientY - 40, '#ff0000');
-                const {r, g, b} = hexToRgb(color);
-                await element.color(r, g, b);
-                console.log(color)
-                break;
+        const activeFloor = floors.find(f => f.active);
+        if(activeFloor !== undefined){
+            for(const element of activeFloor.elements){
+                if(intersects[i].object === element.treeElement){
+                    const color = await invokeColorPicker(event.clientX + 20, event.clientY - 40, '#ff0000');
+                    const {r, g, b} = hexToRgb(color);
+                    await element.color(r, g, b);
+                    console.log(color)
+                    break;
+                }
             }
         }
     }

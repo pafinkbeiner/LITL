@@ -4,7 +4,6 @@ import { loadFloor } from "./main";
 export function setupFloorPicker() {
     let floorPickerContainer = document.getElementById('floorPickerContainer');
     if (floorPickerContainer) {
-        console.log("Appending floors...", floors.length);
         floors.forEach((floor, index) => {
             const floorId = `floor-button-${index}`;
             const floorButton = document.createElement('div');
