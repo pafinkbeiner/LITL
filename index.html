@@ -16,7 +16,7 @@
         height: 3rem; 
         width: 3rem;
         border: none;
-        background-color: darkgray;
+        background-color: rgba(169, 169, 169, 0.7);
         font-size: 1.4em;
         display: flex;
         justify-content: center;
@@ -28,13 +28,13 @@
     </style>
     <div id="app"></div>
     <div style="position: absolute; display: flex; flex-direction: column; gap: 1rem;">
-      <div style="display: flex; flex-direction: column; background-color: darkgray; padding: 1rem 3rem 1rem 3rem; align-items: center;">
+      <div style="display: flex; flex-direction: column; background-color: rgba(169, 169, 169, 0.7); padding: 1rem 3rem 1rem 3rem; align-items: center;">
         <h1 style="font-weight: normal;">LITL</h1>
         <p style="font-size: 0.8em;">Smarthome Interface Solution</p>
         <p style="font-size: 0.5em; margin-top: 0.3rem;">© Paul Finkbeiner</p>
       </div>
-      <div id="floorPickerContainer" style="background-color: darkgray; max-width: 20rem;"></div>
-      <div style="background-color: darkgray; max-width: 20rem;">
+      <div id="floorPickerContainer" style="background-color: rgba(169, 169, 169, 0.7); max-width: 20rem;"></div>
+      <div style="background-color: rgba(169, 169, 169, 0.7); max-width: 20rem;">
         <p>TODO: Check reachability and display error or show missing reachability with color</p>
       </div>
     </div>
@@ -57,7 +57,7 @@
     </div>
     <div style="position: absolute; bottom: 5px; right: 5px; display: flex; flex-direction: column; gap: 0.5rem;">
       <button class="btn" id="zoomOut"><img src="https://img.icons8.com/material-two-tone/48/minus--v1.png" alt="minus"/></button>
-      <div id="currentZoom" style="color: lightgrey; display: flex; justify-content: center; align-items: center;"></div>
+      <div id="currentZoom" style="color: rgba(169, 169, 169, 0.7); display: flex; justify-content: center; align-items: center;"></div>
       <button class="btn" id="zoomIn"><img src="https://img.icons8.com/ios-filled/50/plus-math.png" alt="plus"/></button>
     </div>
     <script type="module" src="/floorpicker.js"></script>
