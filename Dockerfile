@@ -6,4 +6,5 @@ RUN npm i -g serve
 COPY . .
 RUN npm run build
 EXPOSE 3030
-CMD [ "serve", "-l", "3030", "-s", "dist" ]
+CMD ["npm", "run", "dev"]
+#CMD [ "serve", "-l", "3030", "-s", "dist" ]
