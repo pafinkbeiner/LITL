@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { rgbToHexNumber } from "./convert";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { logError } from './error';
 
 const loader = new GLTFLoader();
 
