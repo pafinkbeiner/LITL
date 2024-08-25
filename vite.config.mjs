@@ -12,13 +12,13 @@ export default {
     })
   ],
   preview: {
-    port: 3030,
+    port: 8080,
     strictPort: true,
   },
   server: {
-    port: 3030,
+    port: 8080,
     strictPort: true,
     host: true,
-    origin: "http://0.0.0.0:3030",
+    origin: "http://0.0.0.0:8080",
   }
 }

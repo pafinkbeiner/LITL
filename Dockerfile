@@ -5,5 +5,5 @@ RUN npm install
 RUN npm i -g serve
 COPY . .
 RUN npm run build
-EXPOSE 3030
-CMD [ "serve", "-l", "3030", "-s", "dist" ]
+EXPOSE 3000
+CMD [ "serve", "-l", "3000", "-s", "dist" ]
