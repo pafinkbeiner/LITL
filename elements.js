@@ -180,28 +180,72 @@ export const floors = [
         file: "EG.gltf",
         displayName: "Erdgeschoss",
         elements: [
-                {
-                    ...wledElement,
-                    ipAddress: "10.0.0.220",
-                    geometry: {
-                        x: 0.1,
-                        y: 0.9,
-                        z: 0.5
-                    },
-                    material: {
-                        color: 0xaaaaaa
-                    },
-                    position: {
-                        x: -1.6,
-                        y: -6.2,
-                        z: 1.3
-                    },
-                    rotation: {
-                        x: 0,
-                        y: 0,
-                        z: 0
-                    }
+           {
+               ...wledElement,
+               ipAddress: "10.0.0.220",
+               geometry: {
+                   x: 0.1,
+                   y: 0.9,
+                   z: 0.5
+               },
+               material: {
+                   color: 0xaaaaaa
+               },
+               position: {
+                   x: -1.6,
+                   y: -6.2,
+                   z: 1.3
+               },
+               rotation: {
+                   x: 0,
+                   y: 0,
+                   z: 0
+               }
+           },
+           {
+                ...wledElement,
+                ipAddress: "10.0.0.34",
+                geometry: {
+                    x: 0.2,
+                    y: 2,
+                    z: 0.2
+                },
+                material: {
+                    color: 0xaaaaaa
+                },
+                position: {
+                    x: 8.5,
+                    y: 6,
+                    z: 1.3
+                },
+                rotation: {
+                    x: 0,
+                    y: 0,
+                    z: 0
                 }
+            },
+            {
+                ...wledElement,
+                ipAddress: "10.0.0.35",
+                geometry: {
+                    x: 0.2,
+                    y: 2,
+                    z: 0.2
+                },
+                material: {
+                    color: 0xaaaaaa
+                },
+                position: {
+                    x: 2.3,
+                    y: -0.5,
+                    z: 1.3
+                },
+                rotation: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                }
+            }
         ]
     },
 
