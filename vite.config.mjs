@@ -1,6 +1,7 @@
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default {
+  base: "/LITL/",
   plugins: [
     viteStaticCopy({
       targets: [
@@ -20,5 +21,9 @@ export default {
     strictPort: true,
     host: true,
     origin: "http://0.0.0.0:8080",
+  },
+  build: {
+    outDir: 'docs',
+    emptyOutDir: true,
   }
 }
