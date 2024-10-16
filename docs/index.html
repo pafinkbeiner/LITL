@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LITL</title>
+    <script type="module" crossorigin src="/assets/index-Ct5GlDBX.js"></script>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Tahoma, sans-serif;
+      }
+      .btn{
+        height: 3rem; 
+        width: 3rem;
+        border: none;
+        background-color: rgba(169, 169, 169, 0.7);
+        font-size: 1.4em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn > img {
+        height: 60%;
+      }
+    </style>
+    <div id="app"></div>
+    <div style="position: absolute; display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; flex-direction: column; background-color: rgba(169, 169, 169, 0.7); padding: 1rem 3rem 1rem 3rem; align-items: center;">
+        <h1 style="font-weight: normal;">LITL</h1>
+        <p style="font-size: 0.8em;">Smarthome Interface Solution</p>
+        <p style="font-size: 0.5em; margin-top: 0.3rem;">© Paul Finkbeiner</p>
+      </div>
+      <div id="floorPickerContainer" style="background-color: rgba(169, 169, 169, 0.7); max-width: 20rem;"></div>
+      <div style="background-color: rgba(169, 169, 169, 0.7); max-width: 20rem;">
+        <p>TODO: Check reachability and display error or show missing reachability with color</p>
+        <p>TODO: Change state function to receive boolean -> Propably needs backend for receiving mqtt state</p>
+      </div>
+    </div>
+    <div style="position: absolute; top: 5px; right: 5px; display: flex; flex-direction: column; gap: 0.5rem;" id="controls">
+      <div style="display: flex; justify-content: space-between;">
+        <button class="btn" id="moveLeftUp"><img style="transform: rotate(-135deg);" src="https://img.icons8.com/ios-filled/50/000000/arrow.png" alt="arrow"/></button>
+        <button class="btn" id="moveUp"><img style="transform: rotate(-90deg);" src="https://img.icons8.com/ios-filled/50/000000/arrow.png" alt="arrow"/></button>
+        <button class="btn" id="moveRightUp"><img style="transform: rotate(-45deg);" src="https://img.icons8.com/ios-filled/50/000000/arrow.png" alt="arrow"/></button>
+      </div>
+      <div style="display: flex; justify-content: space-between;">
+        <button class="btn" id="moveLeft"><img style="transform: rotate(180deg);" src="https://img.icons8.com/ios-filled/50/000000/arrow.png" alt="arrow"/></button>
+        <button class="btn" id="moveHome"><img src="https://img.icons8.com/ios-filled/50/home.png" alt="home"/></button>
+        <button class="btn" id="moveRight"><img style="transform: rotate(0);" src="https://img.icons8.com/ios-filled/50/000000/arrow.png" alt="arrow"/></button>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 0.5rem;">
+        <button class="btn" id="moveLeftDown"><img style="transform: rotate(135deg);" src="https://img.icons8.com/ios-filled/50/000000/arrow.png" alt="arrow"/></button>
+        <button class="btn" id="moveDown"><img style="transform: rotate(90deg);" src="https://img.icons8.com/ios-filled/50/000000/arrow.png" alt="arrow"/></button>
+        <button class="btn" id="moveRightDown"><img style="transform: rotate(45deg);" src="https://img.icons8.com/ios-filled/50/000000/arrow.png" alt="arrow"/></button>
+      </div> 
+    </div>
+    <div style="position: absolute; bottom: 5px; right: 5px; display: flex; flex-direction: column; gap: 0.5rem;">
+      <button class="btn" id="zoomOut"><img src="https://img.icons8.com/material-two-tone/48/minus--v1.png" alt="minus"/></button>
+      <div id="currentZoom" style="color: rgba(169, 169, 169, 0.7); display: flex; justify-content: center; align-items: center;"></div>
+      <button class="btn" id="zoomIn"><img src="https://img.icons8.com/ios-filled/50/plus-math.png" alt="plus"/></button>
+    </div>
+
+    <!-- START OF ERROR COMPONENT -->
+    <div id="error-container" style="position: fixed; bottom: 1rem; left: 1rem; z-index: 1000;"></div>
+    <style>
+      .error-message {
+        background-color: #f44336; /* Rot */
+        color: white;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+    </style>
+    <!-- END OF ERROR COMPONENT -->
+
+  </body>
+</html>
