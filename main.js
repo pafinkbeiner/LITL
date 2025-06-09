@@ -99,53 +99,53 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-document.getElementById('moveLeftUp').addEventListener('click', () => {
+document.getElementById('moveLeftUp')?.addEventListener('click', () => {
 	if (group) group.rotation.x -= moveSpeed;
 	if (group) group.rotation.z -= moveSpeed;
 });
 
-document.getElementById('moveUp').addEventListener('click', () => {
+document.getElementById('moveUp')?.addEventListener('click', () => {
 	if (group) group.rotation.x -= moveSpeed;
 });
 
-document.getElementById('moveRightUp').addEventListener('click', () => {
+document.getElementById('moveRightUp')?.addEventListener('click', () => {
 	if (group) group.rotation.x -= moveSpeed;
 	if (group) group.rotation.z += moveSpeed;
 });
 
-document.getElementById('moveLeft').addEventListener('click', () => {
+document.getElementById('moveLeft')?.addEventListener('click', () => {
 	if (group) group.rotation.z -= moveSpeed;
 });
 
-document.getElementById('moveHome').addEventListener('click', () => {
+document.getElementById('moveHome')?.addEventListener('click', () => {
 	if (group) group.rotation.x = 5;
     if (group) group.rotation.z = 0.8;
 });
 
-document.getElementById('moveRight').addEventListener('click', () => {
+document.getElementById('moveRight')?.addEventListener('click', () => {
 	if (group) group.rotation.z += moveSpeed;
 });
 
-document.getElementById('moveLeftDown').addEventListener('click', () => {
+document.getElementById('moveLeftDown')?.addEventListener('click', () => {
 	if (group) group.rotation.x += moveSpeed;
 	if (group) group.rotation.z -= moveSpeed;
 });
 
-document.getElementById('moveDown').addEventListener('click', () => {
+document.getElementById('moveDown')?.addEventListener('click', () => {
 	if (group) group.rotation.x += moveSpeed;
 });
 
-document.getElementById('moveRightDown').addEventListener('click', () => {
+document.getElementById('moveRightDown')?.addEventListener('click', () => {
 	if (group) group.rotation.x += moveSpeed;
 	if (group) group.rotation.z += moveSpeed;
 });
 
-document.getElementById('zoomIn').addEventListener('click', () => {
+document.getElementById('zoomIn')?.addEventListener('click', () => {
     if (group) camera.position.z -= moveSpeed;
     document.getElementById("currentZoom").innerText = parseFloat(camera.position.z).toFixed(2);
 });
 
-document.getElementById('zoomOut').addEventListener('click', () => {
+document.getElementById('zoomOut')?.addEventListener('click', () => {
 	if (group) camera.position.z += moveSpeed;
     document.getElementById("currentZoom").innerText = parseFloat(camera.position.z).toFixed(2);
 });
